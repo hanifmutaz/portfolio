@@ -1,0 +1,237 @@
+/* Global Styles & Fallbacks */
+::selection {
+  background: #22d3ee;
+  color: #0b0f14;
+}
+
+.backdrop-blur-support {
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+}
+
+/* Smooth scrolling for older browsers */
+html {
+  scroll-behavior: smooth;
+}
+
+/* Utility Classes */
+.navlink {
+  @apply px-3 py-2 rounded-xl text-slate-300 hover:text-white hover:bg-white/5 transition-all duration-300;
+}
+
+.pill {
+  @apply rounded-xl bg-white/5 border border-white/10 px-2.5 py-1 transition-all duration-300 hover:bg-white/10 hover:scale-105;
+}
+
+.card {
+  @apply overflow-hidden rounded-2xl border border-white/10 bg-gradient-to-b from-ink-800 to-ink-700 shadow-soft transition-all duration-500 hover:shadow-2xl hover:scale-[1.02];
+}
+
+.card-media {
+  @apply h-36 w-full bg-[linear-gradient(120deg,rgba(34,211,238,.15),rgba(56,189,248,.15))] border-b border-white/10 transition-all duration-300;
+}
+
+.timeline {
+  @apply ml-4 mb-6 pl-6;
+}
+
+.timeline-dot {
+  @apply absolute -left-1.5 mt-2 h-3 w-3 rounded-full bg-accent-500 shadow-lg shadow-accent-500/30;
+}
+
+.contact-card {
+  @apply rounded-xl border border-white/10 bg-white/5 p-4 hover:bg-white/10 transition-all duration-300 hover:scale-[1.02] text-left;
+}
+
+.input {
+  @apply w-full rounded-xl border border-white/10 bg-ink-800/70 px-3 py-2 outline-none ring-0 placeholder:text-slate-500 focus:border-accent-500 transition-all duration-300 focus:ring-2 focus:ring-accent-500/20 resize-none;
+}
+
+.btn-ghost {
+  @apply inline-flex items-center gap-2 rounded-xl border border-white/10 px-3 py-1.5 text-slate-300 hover:bg-white/5 transition-all duration-300 hover:scale-105;
+}
+
+/* Certificate Cards */
+.certificate-card {
+  @apply overflow-hidden rounded-2xl border border-white/10 bg-gradient-to-b from-ink-800 to-ink-700 shadow-soft transition-all duration-500 hover:shadow-2xl hover:scale-[1.02];
+  opacity: 0;
+  transform: translateY(30px);
+  transition: opacity 0.6s ease-out, transform 0.6s ease-out, box-shadow 0.5s ease, scale 0.5s ease;
+}
+
+.certificate-card.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.certificate-header {
+  @apply p-6 pb-0 flex items-start justify-between;
+}
+
+.certificate-badge {
+  @apply flex-shrink-0;
+}
+
+.certificate-btn {
+  @apply inline-flex items-center gap-1 rounded-lg border border-white/10 px-2 py-1 text-xs text-slate-300 hover:bg-white/5 transition-all duration-300 hover:scale-105;
+}
+
+/* Certificate Card Hover Effects */
+.certificate-card:hover .certificate-header {
+  @apply transform translate-y-[-2px];
+  transition: transform 0.3s ease;
+}
+
+.certificate-card:hover .certificate-btn {
+  @apply border-accent-500/30 text-accent-400;
+}
+.section-fade {
+  opacity: 0;
+  transform: translateY(30px);
+  transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+}
+
+.section-fade.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.project-card {
+  opacity: 0;
+  transform: translateY(30px);
+  transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+}
+
+.project-card.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Responsive Design Improvements */
+@media (max-width: 640px) {
+  .card-media {
+    height: 120px;
+  }
+  
+  .contact-card {
+    padding: 3rem 1rem;
+    text-align: center;
+  }
+  
+  .timeline {
+    margin-left: 1rem;
+    padding-left: 1.5rem;
+  }
+  
+  .timeline-dot {
+    left: -0.5rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .input {
+    font-size: 16px; /* Prevents zoom on iOS */
+  }
+  
+  .text-3xl {
+    font-size: 1.875rem;
+  }
+  
+  .text-4xl {
+    font-size: 2.25rem;
+  }
+}
+
+/* Loading State */
+.loading {
+  opacity: 0;
+}
+
+.loaded {
+  opacity: 1;
+  transition: opacity 0.3s ease-in;
+}
+
+/* Focus States for Accessibility */
+.navlink:focus,
+.btn-ghost:focus,
+.contact-card:focus,
+.input:focus,
+button:focus {
+  outline: 2px solid #22d3ee;
+  outline-offset: 2px;
+}
+
+/* High Contrast Mode Support */
+@media (prefers-contrast: high) {
+  .card {
+    border-color: rgba(255, 255, 255, 0.3);
+  }
+  
+  .pill {
+    border-color: rgba(255, 255, 255, 0.3);
+  }
+  
+  .input {
+    border-color: rgba(255, 255, 255, 0.3);
+  }
+}
+
+/* Reduced Motion Support */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+  
+  .animate-float,
+  .animate-glow,
+  .animate-fadeInUp,
+  .animate-fadeInLeft,
+  .animate-fadeInRight {
+    animation: none;
+  }
+}
+
+/* Print Styles */
+@media print {
+  .sticky,
+  #menuBtn,
+  #mobileMenu,
+  #themeToggle {
+    display: none !important;
+  }
+  
+  body {
+    background: white !important;
+    color: black !important;
+  }
+  
+  .card,
+  .contact-card {
+    border: 1px solid #ccc !important;
+    background: white !important;
+  }
+}
+
+/* Custom scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: rgba(15, 20, 27, 0.5);
+}
+
+::-webkit-scrollbar-thumb {
+  background: rgba(34, 211, 238, 0.3);
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: rgba(34, 211, 238, 0.5);
+}
