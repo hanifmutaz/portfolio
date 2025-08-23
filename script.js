@@ -8,6 +8,7 @@ document.addEventListener('DOMContentLoaded', function() {
   initCounters();
   initFormHandling();
   initCertificateHandlers();
+  initCertificateModal();
   setCurrentYear();
   
   // Add loading state
@@ -196,21 +197,108 @@ function animateCounter(element) {
   }, 50);
 }
 
+// Certificate Modal Functions
+function initCertificateModal() {
+  const modal = document.getElementById('certificateModal');
+  const modalImage = document.getElementById('modalImage');
+  const modalTitle = document.getElementById('modalTitle');
+  const closeModal = document.getElementById('closeModal');
+  const closeModalBtn = document.getElementById('closeModalBtn');
+  const downloadBtn = document.getElementById('downloadBtn');
+
+  // Certificate view buttons
+  const viewBtns = document.querySelectorAll('.certificate-view-btn');
+  viewBtns.forEach(btn => {
+    btn.addEventListener('click', function(e) {
+      e.preventDefault();
+      const card = this.closest('.certificate-card');
+      const img = card.querySelector('.certificate-image');
+      const title = card.querySelector('h3').textContent;
+      
+      modalImage.src = img.src;
+      modalImage.alt = img.alt;
+      modalTitle.textContent = title;
+      
+      // Show modal with animation
+      modal.classList.remove('hidden');
+      setTimeout(() => {
+        modal.style.opacity = '1';
+      }, 10);
+    });
+  });
+
+  // Certificate card click to open modal
+  const certificateCards = document.querySelectorAll('.certificate-card');
+  certificateCards.forEach(card => {
+    card.addEventListener('click', function(e) {
+      // Don't open modal if clicking on buttons
+      if (e.target.closest('.certificate-btn')) return;
+      
+      const img = this.querySelector('.certificate-image');
+      const title = this.querySelector('h3').textContent;
+      
+      modalImage.src = img.src;
+      modalImage.alt = img.alt;
+      modalTitle.textContent = title;
+      
+      // Show modal with animation
+      modal.classList.remove('hidden');
+      setTimeout(() => {
+        modal.style.opacity = '1';
+      }, 10);
+    });
+  });
+
+  // Close modal functions
+  function closeModalFunc() {
+    modal.style.opacity = '0';
+    setTimeout(() => {
+      modal.classList.add('hidden');
+    }, 300);
+  }
+
+  closeModal.addEventListener('click', closeModalFunc);
+  closeModalBtn.addEventListener('click', closeModalFunc);
+  
+  // Close on backdrop click
+  modal.addEventListener('click', function(e) {
+    if (e.target === modal) {
+      closeModalFunc();
+    }
+  });
+
+  // ESC key to close
+  document.addEventListener('keydown', function(e) {
+    if (e.key === 'Escape' && !modal.classList.contains('hidden')) {
+      closeModalFunc();
+    }
+  });
+
+  // Download functionality
+  downloadBtn.addEventListener('click', function() {
+    const link = document.createElement('a');
+    link.href = modalImage.src;
+    link.download = modalTitle.textContent + '.jpg';
+    link.click();
+    
+    showNotification('Certificate download started!', 'success');
+  });
+}
+
 // Certificate Handlers
 function initCertificateHandlers() {
-  const certificateBtns = document.querySelectorAll('.certificate-btn');
+  const certificateBtns = document.querySelectorAll('.certificate-btn:not(.certificate-view-btn)');
   
   certificateBtns.forEach(btn => {
     btn.addEventListener('click', function(e) {
       e.preventDefault();
+      e.stopPropagation();
       
       const action = this.textContent.trim();
       const certificateCard = this.closest('.certificate-card');
       const certificateTitle = certificateCard.querySelector('h3').textContent;
       
-      if (action === 'view') {
-        showCertificateModal(certificateTitle);
-      } else if (action === 'verify') {
+      if (action === 'verify') {
         showNotification(`Verifying ${certificateTitle}...`, 'info');
         // Simulate verification process
         setTimeout(() => {
@@ -225,73 +313,6 @@ function initCertificateHandlers() {
       }, 150);
     });
   });
-}
-
-function showCertificateModal(title) {
-  // Create modal backdrop
-  const backdrop = document.createElement('div');
-  backdrop.className = 'fixed inset-0 z-50 bg-black/50 backdrop-blur-sm flex items-center justify-center p-4';
-  backdrop.style.opacity = '0';
-  
-  // Create modal content
-  const modal = document.createElement('div');
-  modal.className = 'bg-ink-800 rounded-2xl border border-white/10 p-6 max-w-md w-full transform scale-95 transition-all duration-300';
-  
-  modal.innerHTML = `
-    <div class="flex items-center justify-between mb-4">
-      <h3 class="text-xl font-semibold">${title}</h3>
-      <button class="close-modal rounded-lg p-2 hover:bg-white/5 transition-colors">
-        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-          <line x1="18" y1="6" x2="6" y2="18" stroke="currentColor" stroke-width="1.6"/>
-          <line x1="6" y1="6" x2="18" y2="18" stroke="currentColor" stroke-width="1.6"/>
-        </svg>
-      </button>
-    </div>
-    <div class="bg-white/5 rounded-xl p-4 mb-4 text-center">
-      <div class="w-16 h-16 bg-gradient-to-tr from-accent-600 to-accent-400 rounded-xl mx-auto mb-3 flex items-center justify-center">
-        <svg width="32" height="32" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-          <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z" stroke="white" stroke-width="1.6"/>
-          <polyline points="14,2 14,8 20,8" stroke="white" stroke-width="1.6"/>
-        </svg>
-      </div>
-      <p class="text-sm text-slate-400">Certificate preview would appear here</p>
-    </div>
-    <div class="flex gap-3">
-      <button class="flex-1 bg-accent-500 text-ink-900 rounded-xl px-4 py-2 font-medium hover:bg-accent-400 transition-colors">Download PDF</button>
-      <button class="close-modal flex-1 border border-white/10 rounded-xl px-4 py-2 hover:bg-white/5 transition-colors">Close</button>
-    </div>
-  `;
-  
-  backdrop.appendChild(modal);
-  document.body.appendChild(backdrop);
-  
-  // Animate in
-  requestAnimationFrame(() => {
-    backdrop.style.opacity = '1';
-    modal.style.transform = 'scale(1)';
-  });
-  
-  // Close handlers
-  const closeBtns = backdrop.querySelectorAll('.close-modal');
-  closeBtns.forEach(btn => {
-    btn.addEventListener('click', () => closeCertificateModal(backdrop));
-  });
-  
-  backdrop.addEventListener('click', (e) => {
-    if (e.target === backdrop) {
-      closeCertificateModal(backdrop);
-    }
-  });
-}
-
-function closeCertificateModal(backdrop) {
-  const modal = backdrop.querySelector('.bg-ink-800');
-  backdrop.style.opacity = '0';
-  modal.style.transform = 'scale(0.95)';
-  
-  setTimeout(() => {
-    document.body.removeChild(backdrop);
-  }, 300);
 }
 
 // Form Handling
@@ -388,9 +409,11 @@ function showNotification(message, type) {
   
   // Animate out and remove
   setTimeout(() => {
-    notification.style.transform = 'translateX(full)';
+    notification.style.transform = 'translateX(100%)';
     setTimeout(() => {
-      document.body.removeChild(notification);
+      if (document.body.contains(notification)) {
+        document.body.removeChild(notification);
+      }
     }, 300);
   }, 3000);
 }
