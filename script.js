@@ -291,6 +291,7 @@ function initCertificateHandlers() {
   
   certificateBtns.forEach(btn => {
     btn.addEventListener('click', function(e) {
+      if (this.classList.contains('verify-link')) return;
       e.preventDefault();
       e.stopPropagation();
       
