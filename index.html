@@ -242,31 +242,38 @@
           <div class="rounded-2xl border border-white/10 bg-white/5 p-5 hover:bg-white/10 transition-all duration-300 hover:scale-[1.02] section-fade">
             <div class="text-sm text-slate-400">Network & System</div>
             <div class="mt-2 flex flex-wrap gap-2 text-sm">
+              <span class="pill">Cisco Packet Tracer</span>
+              <span class="pill">BGP</span>
+              <span class="pill">EIGRP</span>
+              <span class="pill">VLAN</span>
+              <span class="pill">SSH</span>
+              <span class="pill">SSL</span>
               <span class="pill">TCP/IP</span>
               <span class="pill">DNS/DHCP</span>
               <span class="pill">SMB</span>
-              <span class="pill">Linux CLI</span>
+              <span class="pill">Ubuntu Server</span>
               <span class="pill">Virtualbox</span>
             </div>
           </div>
           <div class="rounded-2xl border border-white/10 bg-white/5 p-5 hover:bg-white/10 transition-all duration-300 hover:scale-[1.02] section-fade">
-            <div class="text-sm text-slate-400">Developer Basics</div>
+            <div class="text-sm text-slate-400">Backend & Deployment</div>
             <div class="mt-2 flex flex-wrap gap-2 text-sm">
-              <span class="pill">Html</span>
-              <span class="pill">CSS</span>
-              <span class="pill">JavaScript</span>
-              <span class="pill">Node.js</span>
-              <span class="pill">PHP (laravel dasar)</span>
+              <span class="pill">Basic Node.js</span>
+              <span class="pill">PHP</span>
+              <span class="pill">REST API</span>
+              <span class="pill">Database (MySQL + phpMyAdmin)</span>
+              <span class="pill">Web Server (Nginx)</span>
             </div>
           </div>
           <div class="rounded-2xl border border-white/10 bg-white/5 p-5 hover:bg-white/10 transition-all duration-300 hover:scale-[1.02] section-fade sm:col-span-2 lg:col-span-1">
-            <div class="text-sm text-slate-400">Tools</div>
+            <div class="text-sm text-slate-400">Automation & Tools</div>
             <div class="mt-2 flex flex-wrap gap-2 text-sm">
+              <span class="pill">Bash</span>
               <span class="pill">Git</span>
+              <span class="pill">OpenSSL</span>
               <span class="pill">Wireshark</span>
               <span class="pill">Postman</span>
               <span class="pill">Powershell/CMD</span>
-              <span class="pill">Bash</span>
             </div>
           </div>
           <div class="rounded-2xl border border-white/10 bg-white/5 p-5 hover:bg-white/10 transition-all duration-300 hover:scale-[1.02] section-fade sm:col-span-2 lg:col-span-1">
@@ -324,9 +331,9 @@
             <div class="card-media"></div>
             <div class="p-5">
               <h3 class="text-lg font-semibold">Infra Lab Mini</h3>
-              <p class="mt-1 text-sm text-slate-400">topologi sederhana untuk testing: router vm, file server, client windows.</p>
+              <p class="mt-1 text-sm text-slate-400">Pengujian topologi virtual menggunakan VirtualBox: virtual router, file server (Ubuntu), dan client Windows, untuk memahami alur jaringan dan file sharing.</p>
               <div class="mt-3 flex flex-wrap gap-2 text-xs">
-                <span class="pill">virtualbox</span><span class="pill">linux</span><span class="pill">docs</span>
+                <span class="pill">virtualbox</span><span class="pill">ubuntu-server</span><span class="pill">windows-client</span><span class="pill">SSH</span><span class="pill">SSL</span><span class="pill">docs</span>
               </div>
               <div class="mt-4 flex items-center gap-3">
                 <!-- <a href="#" class="btn-ghost">demo</a>
@@ -988,9 +995,27 @@
           <li class="timeline section-fade">
             <div class="timeline-dot"></div>
             <div>
-              <div class="font-medium">lab & belajar mandiri</div>
+              <div class="font-medium">Lab & Belajar Mandiri</div>
               <div class="text-xs text-slate-400">2024 — sekarang</div>
-              <p class="mt-2 text-slate-300 text-sm">eksperimen vm, konfigurasi file server, script kecil buat otomatisasi tugas.</p>
+              <ul class="mt-2 text-slate-300 text-sm space-y-1">
+                <li class="flex gap-2">
+                  <svg class="h-4 w-4 mt-1 shrink-0" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true"><path d="M16.704 5.29a1 1 0 0 1 .006 1.414l-7.25 7.333a1 1 0 0 1-1.44 0L3.29 9.01a1 1 0 1 1 1.42-1.41l3.02 3.04 6.53-6.596a1 1 0 0 1 1.444.247Z"/></svg>
+                  <span>Simulasi jaringan dengan Cisco Packet Tracer (BGP, EIGRP, Root IP, VLAN).</span>
+                </li>
+                <li class="flex gap-2">
+                  <svg class="h-4 w-4 mt-1 shrink-0" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true"><path d="M16.704 5.29a1 1 0 0 1 .006 1.414l-7.25 7.333a1 1 0 0 1-1.44 0L3.29 9.01a1 1 0 1 1 1.42-1.41l3.02 3.04 6.53-6.596a1 1 0 0 1 1.444.247Z"/></svg>
+                  <span>Setup Samba server, remote via SSH, konfig SSL di Nginx (Ubuntu 20.04).</span>
+                </li>
+                <li class="flex gap-2">
+                  <svg class="h-4 w-4 mt-1 shrink-0" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true"><path d="M16.704 5.29a1 1 0 0 1 .006 1.414l-7.25 7.333a1 1 0 0 1-1.44 0L3.29 9.01a1 1 0 1 1 1.42-1.41l3.02 3.04 6.53-6.596a1 1 0 0 1 1.444.247Z"/></svg>
+                  <span>Konfig DNS + domain internal, web server deployment, upload template statis.</span>
+                </li>
+                <li class="flex gap-2">
+                  <svg class="h-4 w-4 mt-1 shrink-0" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true"><path d="M16.704 5.29a1 1 0 0 1 .006 1.414l-7.25 7.333a1 1 0 0 1-1.44 0L3.29 9.01a1 1 0 1 1 1.42-1.41l3.02 3.04 6.53-6.596a1 1 0 0 1 1.444.247Z"/></svg>
+                  <span>Otomasi tugas kecil via script, backup data, dan manajemen file.</span>
+                </li>
+                <p class="font-medium"><b>Tools:</b> Cisco Packet Tracer, Ubuntu Server, Nginx, Samba, OpenSSL, MySQL, phpMyAdmin.</p>
+              </ul>
             </div>
           </li>
         </ol>
@@ -1008,26 +1033,29 @@
           <div class="lg:col-span-2 section-fade">
             <div class="rounded-2xl border border-white/10 bg-white/5 p-6">
               <div class="grid gap-4 sm:grid-cols-2">
-                <a href="mailto:hanifmutaz@gmail.com" class="contact-card">
-                  <div class="text-sm text-slate-400">Email</div>
-                  <div class="text-lg font-medium">hanifmutaz@gmail.com</div>
-                </a>
-                <a href="https://wa.me/628999314534" target="_blank" class="contact-card">
-                  <div class="text-sm text-slate-400">Whatsapp</div>
-                  <div class="text-lg font-medium">+62 851 8666 2543</div>
-                </a>
-                <a href="https://github.com/hanifmutaz" target="_blank" class="contact-card">
-                  <div class="text-sm text-slate-400">GitHub</div>
-                  <div class="text-lg font-medium">hanifmutaz</div>
-                </a>
-                <a href="https://www.linkedin.com/in/hanifmutaz" target="_blank" class="contact-card">
-                  <div class="text-sm text-slate-400">
-                    LinkedIn
-                  </div>
-                  <div class="text-lg font-medium">hanifmutaz</div>
-                </a>
+                <div>
+                  <p class="text-xs uppercase tracking-wide text-slate-400">Email</p>
+                  <a class="text-lg font-semibold hover:underline break-all"
+                    href="mailto:hanifmutaz@gmail.com">hanifmutaz@gmail.com</a>
+                </div>
+                <div>
+                  <p class="text-xs uppercase tracking-wide text-slate-400">WhatsApp</p>
+                  <a class="text-lg font-semibold hover:underline"
+                    href="https://wa.me/6285186662543" target="_blank" rel="noopener">+62 851 8666 2543</a>
+                </div>
+                <div>
+                  <p class="text-xs uppercase tracking-wide text-slate-400">GitHub</p>
+                  <a class="text-lg font-semibold hover:underline"
+                    href="https://github.com/hanifmutaz" target="_blank" rel="noopener">hanifmutaz</a>
+                </div>
+                <div>
+                  <p class="text-xs uppercase tracking-wide text-slate-400">LinkedIn</p>
+                  <a class="text-lg font-semibold hover:underline"
+                    href="https://www.linkedin.com/in/hanifmutaz/" target="_blank" rel="noopener">hanifmutaz</a>
+                </div>
               </div>
-              <form class="mt-6 grid gap-3" action="mailto:hanifmutaz@gmail.com" method="post" enctype="text/plain">
+            
+              <!-- <form class="mt-6 grid gap-3" action="mailto:hanifmutaz@gmail.com" method="post" enctype="text/plain">
                 <div class="grid gap-3 sm:grid-cols-2">
                   <input class="input" name="nama" placeholder="nama" required>
                   <input class="input" name="email" type="email" placeholder="email" required>
@@ -1038,7 +1066,7 @@
                   <button class="inline-flex items-center gap-2 rounded-xl bg-accent-500 px-4 py-2 font-medium text-ink-900 hover:bg-accent-400 transition-all duration-300 hover:scale-105" type="submit">kirim</button>
                   <span class="text-xs text-slate-500">atau email langsung ke alamat di atas</span>
                 </div>
-              </form>
+              </form> -->
             </div>
           </div>
         </div>
